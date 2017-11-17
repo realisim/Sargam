@@ -1,0 +1,193 @@
+<downloadPage>https://sargamdev.wordpress.com/download/</downloadPage>
+
+//-----------------------------------------------------------------------------
+
+<release>
+<version>0.9.1</version>
+<releaseNotes>
+
+<h1>Sargam v0.9.1</h1>
+<h2>Release notes</h2>
+<p>
+This minor version brings only a little feature: mouse selection. It is very not much.<br>
+<br>
+Althought it will seem like a very minor upgrade, this version will collect the number of time the application is openned. There are absolutely no data collected whatsoever except the fact the application was openned. No ip addresses, not even the slightest information about who/how/when/where is collected.<br>
+<br>
+The idea is for me to get a feel of the current active user base. I have the intention of developping the second part of Sargam which aims at sharing the composition you have been making. I would like to know how much of us are using Sargam, since there is no point in sharing if we are alone!<br>
+<br>
+Cheers!
+</p>
+
+<p> 
+Thank you very much for using Sargam, please share with your friends!<br>
+Please report bugs and ideas at sargam.software@gmail.com
+</p>
+
+</releaseNotes>
+</release>
+
+//-----------------------------------------------------------------------------
+
+<release>
+<version>0.9.0</version>
+<releaseNotes>
+
+<h1>Sargam v0.9.0</h1>
+<h2>Release notes</h2>
+<p>
+This minor version brings only a little feature: mouse selection. It is very not much.<br>
+<br>
+Althought it will seem like a very minor upgrade, this version will collect the number of time the application is openned. There are absolutely no data collected whatsoever except the fact the application was openned. No ip addresses, not even the slightest information about who/how/when/where is collected.<br>
+<br>
+The idea is for me to get a feel of the current active user base. I have the intention of developping the second part of Sargam which aims at sharing the composition you have been making. I would like to know how much of us are using Sargam, since there is no point in sharing if we are alone!<br>
+<br>
+Cheers!
+</p>
+
+<p> 
+Thank you very much for using Sargam, please share with your friends!<br>
+Please report bugs and ideas at sargam.software@gmail.com
+</p>
+
+</releaseNotes>
+</release>
+
+//-----------------------------------------------------------------------------
+
+<release>
+<version>0.8.1</version>
+<releaseNotes>
+
+<h1>Sargam v0.8.1</h1>
+<h2>Release notes</h2>
+<p>
+-Fixed crashes when mashing backspace.<br>
+-Small internal changes.<br>
+</p>
+
+<p> 
+Thank you very much for using Sargam, please share with your friends!<br>
+Please report bugs and ideas at sargam.software@gmail.com
+</p>
+
+</releaseNotes>
+</release>
+
+//-----------------------------------------------------------------------------
+
+<release>
+<version>0.8.0</version>
+<releaseNotes>
+
+<h1>Sargam v0.8.0</h1>
+<h3>Release notes</h3>
+<p>
+-Support for arbitrary number of description bars.<br>
+-Label of description bar is now editable.<br>
+-Enhanced UI for bar text and line text input.<br>
+</p>
+
+<h3>General</h3>
+<p>
+Feel free to donate via the paypal's button on the download page at https://sargamdev.wordpress.com/download/<br>
+</p>
+
+<p> 
+Thank you very much for using Sargam, please share with your friends!<br>
+Please report bugs and ideas at sargam.software@gmail.com
+</p>
+
+</releaseNotes>
+</release>
+
+//-----------------------------------------------------------------------------
+
+<release>
+<version>0.7.0</version>
+<releaseNotes>
+
+<h1>Sargam v0.7.0</h1>
+<h3>Release notes</h3>
+<p>
+-Support for undo/redo<br>
+-Reminder to save when quitting<br>
+-Added keys 8,9, and 0 to complete the scale when entering notes<br>
+-Enabled navigation using mouse<br>
+-Improved update dialog<br>
+-Fixed numerous small bugs<br>
+</p>
+
+<h3>General</h3>
+<p>
+If you would like to buy me a beer as a thank you, feel free to do so via the paypal's button on the download page at https://sargamdev.wordpress.com/download/<br>
+</p>
+
+<p> 
+Thank you very much for using Sargam, please share with your friends!<br>
+Please report bugs and ideas at sargam.software@gmail.com
+</p>
+
+</releaseNotes>
+</release>
+
+//-----------------------------------------------------------------------------
+
+<release>
+<version>0.6.0</version>
+<releaseNotes>
+
+<h1>Sargam v0.6.0</h1>
+<h3>Release notes</h3>
+<p>
+-Support for devanagari script.<br>
+-Font size can now be changed.<br>
+-Enhanced rendering of the notes<br>
+<blockquote>
+-Octaves (dots) above or under notes are clearer.<br>
+-Notes rendering is more natural.<br>
+-Fixed multiples rendering issues on the windows version.<br>
+</blockquote>
+-Fixed numerous small bugs
+</p>
+
+<h3>General</h3>
+<p>
+A tutorial is now available on the main page at https://sargamdev.wordpress.com/<br>
+If you enjoy the product, please donate via the paypal's button on the download page at https://sargamdev.wordpress.com/download/<br>
+
+  <p> 
+  Thank you very much for using Sargam, please share with your friends!<br>
+  Feel free to report bugs and idea at sargam.software@gmail.com
+  </p>
+</p>
+
+</releaseNotes>
+</release>
+
+//-----------------------------------------------------------------------------
+<release>
+<version>0.5.2</version>
+<releaseNotes>
+<h1>Sargam v0.5.2</h1>
+- Infrastructure work that enables on line version checking.<br>
+</releaseNotes>
+</release>
+
+//-----------------------------------------------------------------------------
+<release>
+<version>0.5.1</version>
+<releaseNotes>
+<h1>Sargam v0.5.1</h1>
+- Improved usability of beat notation on bars.<br>
+- Improved current bar highlight behavior.<br>
+</releaseNotes>
+</release>
+
+//-----------------------------------------------------------------------------
+<release>
+<version>0.5.0</version>
+<releaseNotes>
+<h1>Sargam v0.5.0</h1>
+Sargam is a notation tool to ease sharing and teaching of sitar. With it’s simple user interface it makes entering composition as simple as writing them on a paper. It supports printing and PDF export to share with friends or students.
+</releaseNotes>
+</release>

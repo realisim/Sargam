@@ -1,0 +1,15 @@
+link to sargam bucket
+sargam.com.s3-website-us-east-1.amazonaws.com
+
+Voici le code html pour le conteur de visite
+<br/>
+<script type="text/javascript" src="http://counter3.01counter.com/private/counter.js?c=6e34f8b3c83a55c3c69f1b2c50790b1e"></script>
+<noscript><a href="http://www.freecounterstat.com" title="website counter"><img src="http://counter3.01counter.com/private/freecounterstat.php?c=6e34f8b3c83a55c3c69f1b2c50790b1e" border="0" title="website counter" alt="website counter"></a>
+</noscript>
+      
+Dans sargam.exe, on fait une requete à 
+http://counter3.01counter.com/private/freecounterstat.php?c=6e34f8b3c83a55c3c69f1b2c50790b1e
+pour incrementer le conteur.
+
+Pour visualiser le compteur... La meilleur façon que j'ai trouvé est de taper le lien dans le browser
+http://counter3.01counter.com/private/freecounterstat.php?c=6e34f8b3c83a55c3c69f1b2c50790b1e
