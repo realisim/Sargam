@@ -1,0 +1,16 @@
+
+os: osx
+
+language: cpp
+
+compiler: 
+  - gcc
+  - clang
+
+before script:
+  - mkdir cmake_build
+  - cd cmake_build
+  - cmake ../ -G "Xcode" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES="Release" -DCMAKE_PREFIX_PATH="/Users/po/Qt5.9/5.9.2/clang_64/lib/cmake/Qt5OpenGL;/Users/po/Qt5.9/5.9.2/clang_64/lib/cmake/Qt5Widgets;/Users/po/Qt5.9/5.9.2/clang_64/lib/cmake/Qt5PrintSupport;/Users/po/Qt5.9/5.9.2/clang_64/lib/cmake/Qt5Network"
+
+script:
+  - cmake --build .
