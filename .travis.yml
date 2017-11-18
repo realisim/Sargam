@@ -15,8 +15,8 @@ git:
 
 before_install:
    - brew update
-   - brew install qt5
-   #- brew link --force qt5;
+   - travis_wait brew install qt5
+   - travis_wait brew link --force qt5;
 
 
 script:
