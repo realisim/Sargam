@@ -14,8 +14,8 @@ git:
 
 before_install:
    - brew update
-   - brew install qt59
-   - brew link --force qt59;
+   - brew install qt5
+   - brew link --force qt5;
 
 
 script:
