@@ -11,6 +11,13 @@ matrix:
         # - QT_BASE=59 
         #QT_59_PREFIX_PATH="/usr/local/Cellar/qt/5.9.2"
         $QT_56_PREFIX_PATH="/usr/local/opt/qt5/"
+#    - os: osx
+#      osx_image: xcode8.3 # targetting sdk 10.12
+#      compiler: clang
+#      env: 
+#        - QT_BASE=59 
+#        - QT_59_PREFIX_PATH="/usr/local/Cellar/qt/5.9.2"
+        
 
 git:
   depth: 10
@@ -41,13 +48,14 @@ script:
 before_deploy:
   #- export RELEASE_PKG_FILEA=$(ls ./dist/*bin.zip)
   - export RELEASE_PKG_FILEA="../bin/Sargam/Release/Sargam.app"
-  - echo "deploying $RELEASE_PKG_FILEA to GitHub releases"
+  - echo "deploying ${RELEASE_PKG_FILEA} to GitHub releases"
 
 deploy:
   provider: releases
   api_key: 
     secure: "0b01fe4633390cbd4e5f3b80c5fab4fe6cc78026"
   skip_cleanup: true
+  file: ${RELEASE_PKG_FILEA}
   on:
     tags: true
 
