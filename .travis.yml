@@ -64,3 +64,4 @@ deploy:
 
 notifications:
   email: false
+
