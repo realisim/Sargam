@@ -56,8 +56,9 @@ deploy:
   api_key: "$GITHUB_TOKEN"
   #  secure: "7673ea8476356eb98d63a0ce6dcd3ee81ceedae4"
   skip_cleanup: true
-  #file: 
-  #  - "${RELEASE_PKG_FILEA}"
+  file_glob: true
+  file: 
+    - "../bin/Sargam/Release/Sargam.app"
   on:
     tags: true
 
