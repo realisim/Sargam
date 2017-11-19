@@ -19,22 +19,18 @@ dist: trusty
 
 before_install:
    - brew update
-   #- sudo add-apt-repository ppa:beineri/opt-qt562-trusty -y
 
 install:
-  #- travis_wait brew install qt55
-  #- travis_wait brew link --force qt55;
+  # install qt 5.6.1
   - travis_wait curl -O https://raw.githubusercontent.com/Homebrew/homebrew-core/fdfc724dd532345f5c6cdf47dc43e99654e6a5fd/Formula/qt5.rb
   - travis_wait brew install ./qt5.rb
-  #- sudo apt-get install -qq qt56base;
-  #- source /opt/qt56/bin/qt56-env.sh;
 
 script:
   - mkdir build
   - cd build
 
   - pwd
-  - ls
+  - echo ls -la
 
   - cmake ../ -G "Xcode" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES="Release" -DCMAKE_PREFIX_PATH="/usr/local/opt/qt5/lib/cmake/Qt5OpenGL;/usr/local/opt/qt5/lib/cmake/Qt5Widgets;/usr/local/opt/qt5/lib/cmake/Qt5PrintSupport;/usr/local/opt/qt5/lib/cmake/Qt5Network"
   - cmake --build .
@@ -42,6 +38,18 @@ script:
   #macdeployqt
   - /usr/local/opt/qt5/bin/macdeployqt ../bin/Sargam/Release/Sargam.app
 
+before_deploy:
+  #- export RELEASE_PKG_FILEA=$(ls ./dist/*bin.zip)
+  - export RELEASE_PKG_FILEA="../bin/Sargam/Release/Sargam.app"
+  - echo "deploying $RELEASE_PKG_FILEA to GitHub releases"
+
+deploy:
+  provider: releases
+  api_key: 
+    secure: "0b01fe4633390cbd4e5f3b80c5fab4fe6cc78026"
+  skip_cleanup: true
+  on:
+    tags: true
 
 notifications:
   email: false
