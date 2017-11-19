@@ -9,7 +9,8 @@ matrix:
       compiler: clang
       env: 
         # - QT_BASE=59 
-        QT_PREFIX_PATH="/usr/local/Cellar/qt/5.9.2"
+        #QT_59_PREFIX_PATH="/usr/local/Cellar/qt/5.9.2"
+        $QT_56_PREFIX_PATH="/usr/local/opt/qt5/"
 
 git:
   depth: 10
@@ -35,7 +36,7 @@ script:
   - pwd
   - ls
 
-  - cmake ../ -G "Xcode" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES="Release" -DCMAKE_PREFIX_PATH="/usr/local/Cellar/qt/5.9.2/clang_64/lib/cmake/Qt5OpenGL;/usr/local/Cellar/qt/5.9.2/clang_64/lib/cmake/Qt5Widgets;/usr/local/Cellar/qt/5.9.2/clang_64/lib/cmake/Qt5PrintSupport;/usr/local/Cellar/qt/5.9.2/clang_64/lib/cmake/Qt5Network"
+  - cmake ../ -G "Xcode" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES="Release" -DCMAKE_PREFIX_PATH="/usr/local/opt/qt5/lib/cmake/Qt5OpenGL;/usr/local/opt/qt5/lib/cmake/Qt5Widgets;/usr/local/opt/qt5/lib/cmake/Qt5PrintSupport;/usr/local/opt/qt5/lib/cmake/Qt5Network"
   - cmake --build .
 
 
