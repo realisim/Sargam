@@ -5,6 +5,7 @@ matrix:
   include:
     - os: osx
       osx_image: xcode6.4
+      #xcode_sdk: macosx10.10
       compiler: clang
       env: 
         # - QT_BASE=59 
@@ -16,14 +17,16 @@ git:
 dist: trusty
 
 before_install:
-   #- brew update
-   #- travis_wait brew install qt55
-   #- travis_wait brew link --force qt55;
-   - sudo add-apt-repository ppa:beineri/opt-qt562-trusty -y
+   - brew update
+   #- sudo add-apt-repository ppa:beineri/opt-qt562-trusty -y
 
 install:
-  - sudo apt-get install -qq qt56base;
-  - source /opt/qt56/bin/qt56-env.sh;
+  #- travis_wait brew install qt55
+  #- travis_wait brew link --force qt55;
+  - travis_wait curl -O https://raw.githubusercontent.com/Homebrew/homebrew-core/fdfc724dd532345f5c6cdf47dc43e99654e6a5fd/Formula/qt5.rb
+  - travis_wait brew install ./qt5.rb
+  #- sudo apt-get install -qq qt56base;
+  #- source /opt/qt56/bin/qt56-env.sh;
 
 script:
   - mkdir build
