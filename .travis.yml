@@ -58,7 +58,7 @@ deploy:
   skip_cleanup: true
   file_glob: true
   file: 
-    - "../bin/Sargam/Release/Sargam.app"
+    - "../bin/Sargam/Release/*"
   on:
     tags: true
 
