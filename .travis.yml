@@ -52,10 +52,10 @@ before_deploy:
 
 deploy:
   provider: releases
-  api_key: 
-    secure: "7673ea8476356eb98d63a0ce6dcd3ee81ceedae4"
+  api_key: $GITHUB_OAUTH_TOKEN
+  #  secure: "7673ea8476356eb98d63a0ce6dcd3ee81ceedae4"
   skip_cleanup: true
-  file: ${RELEASE_PKG_FILEA}
+  file: $RELEASE_PKG_FILEA
   on:
     tags: true
 
