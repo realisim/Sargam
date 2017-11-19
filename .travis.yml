@@ -39,6 +39,9 @@ script:
   - cmake ../ -G "Xcode" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES="Release" -DCMAKE_PREFIX_PATH="/usr/local/opt/qt5/lib/cmake/Qt5OpenGL;/usr/local/opt/qt5/lib/cmake/Qt5Widgets;/usr/local/opt/qt5/lib/cmake/Qt5PrintSupport;/usr/local/opt/qt5/lib/cmake/Qt5Network"
   - cmake --build .
 
+  #macdeployqt
+  - /usr/local/opt/qt5/bin/macdeployqt ../bin/Sargam/Release/Sargam.app
+
 
 notifications:
   email: false
