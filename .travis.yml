@@ -10,7 +10,9 @@ matrix:
       env: 
         # - QT_BASE=59 
         #QT_59_PREFIX_PATH="/usr/local/Cellar/qt/5.9.2"
-        $QT_56_PREFIX_PATH="/usr/local/opt/qt5/"
+        #$QT_56_PREFIX_PATH="/usr/local/opt/qt5/"
+        #/usr/local/Cellar/qt5/5.6.1-1/
+        #/usr/local/Cellar/qt5/
 #    - os: osx
 #      osx_image: xcode8.3 # targetting sdk 10.12
 #      compiler: clang
@@ -25,7 +27,8 @@ git:
 dist: trusty
 
 before_install:
-   - brew update
+  - brew update
+
 
 install:
   # install qt 5.6.1
@@ -39,11 +42,11 @@ script:
   - pwd
   - echo ls -la
 
-  - cmake ../ -G "Xcode" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES="Release" -DCMAKE_PREFIX_PATH="/usr/local/opt/qt5/lib/cmake/Qt5OpenGL;/usr/local/opt/qt5/lib/cmake/Qt5Widgets;/usr/local/opt/qt5/lib/cmake/Qt5PrintSupport;/usr/local/opt/qt5/lib/cmake/Qt5Network"
+  - cmake ../ -G "Xcode" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES="Release" -DCMAKE_PREFIX_PATH="usr/local/Cellar/qt5/5.6.1-1/lib/cmake/Qt5OpenGL;usr/local/Cellar/qt5/5.6.1-1/lib/cmake/Qt5Widgets;usr/local/Cellar/qt5/5.6.1-1/lib/cmake/Qt5PrintSupport;usr/local/Cellar/qt5/5.6.1-1/lib/cmake/Qt5Network"
   - cmake --build .
 
   #macdeployqt
-  - /usr/local/opt/qt5/bin/macdeployqt ../bin/Sargam/Release/Sargam.app
+  - usr/local/Cellar/qt5/5.6.1-1/bin/macdeployqt ../bin/Sargam/Release/Sargam.app
 
 before_deploy:
   #- export RELEASE_PKG_FILEA=$(ls ./dist/*bin.zip)
