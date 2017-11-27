@@ -8,13 +8,15 @@ matrix:
       xcode_sdk: macosx10.10
       compiler: clang
       env: 
-        # - QT_BASE=59 
+        # - QT_BASE=55
         #QT_59_PREFIX_PATH="/usr/local/Cellar/qt/5.9.2"
         #$QT_56_PREFIX_PATH="/usr/local/opt/qt5/"
         #/usr/local/Cellar/qt5/5.6.1-1/
         #/usr/local/Cellar/qt5/5.6.1-1/lib/cmake/
+        #/usr/local/Cellar/qt@5.5/5.5.1_1/
 #    - os: osx
 #      osx_image: xcode8.3 # targetting sdk 10.12
+#      xcode_sdk: macosx10.12
 #      compiler: clang
 #      env: 
 #        - QT_BASE=59 
@@ -31,9 +33,16 @@ before_install:
 
 
 install:
+  # install qt 5.5
+  - travis_wait brew install qt55
   # install qt 5.6.1
-  - travis_wait curl -O https://raw.githubusercontent.com/Homebrew/homebrew-core/fdfc724dd532345f5c6cdf47dc43e99654e6a5fd/Formula/qt5.rb
-  - travis_wait brew install ./qt5.rb
+  #- travis_wait curl -O https://raw.githubusercontent.com/Homebrew/homebrew-core/fdfc724dd532345f5c6cdf47dc43e99654e6a5fd/Formula/qt5.rb
+  # qt 5.6.2
+  #- travis_wait curl -O https://raw.githubusercontent.com/Homebrew/homebrew-core/106d0878ee812cb8f5c403f717bdebe836445aee/Formula/qt5.rb
+  # qt.5.7.0
+  #- travis_wait curl -O https://raw.githubusercontent.com/Homebrew/homebrew-core/1c4bb08cc9cff85d0ae921886263064ef8bd3b30/Formula/qt5.rb
+  
+  #- travis_wait brew install ./qt5.rb
 
 script:
   - mkdir build
@@ -42,18 +51,20 @@ script:
   - pwd
   - echo ls -la
 
-  - cmake ../ -G "Xcode" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES="Release" -DCMAKE_PREFIX_PATH="/usr/local/Cellar/qt5/5.6.1-1/lib/cmake/Qt5OpenGL;/usr/local/Cellar/qt5/5.6.1-1/lib/cmake/Qt5Widgets;/usr/local/Cellar/qt5/5.6.1-1/lib/cmake/Qt5PrintSupport;/usr/local/Cellar/qt5/5.6.1-1/lib/cmake/Qt5Network"
+  # qt 5.5
+  - cmake ../ -G "Xcode" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES="Release" -DCMAKE_PREFIX_PATH="/usr/local/Cellar/qt@5.5/5.5.1_1/lib/cmake/Qt5OpenGL;/usr/local/Cellar/qt@5.5/5.5.1_1/lib/cmake/Qt5Widgets;/usr/local/Cellar/qt@5.5/5.5.1_1/lib/cmake/Qt5PrintSupport;/usr/local/Cellar/qt@5.5/5.5.1_1/lib/cmake/Qt5Network"
+  #- cmake ../ -G "Xcode" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES="Release" -DCMAKE_PREFIX_PATH="/usr/local/Cellar/qt5/5.6.1-1/lib/cmake/Qt5OpenGL;/usr/local/Cellar/qt5/5.6.1-1/lib/cmake/Qt5Widgets;/usr/local/Cellar/qt5/5.6.1-1/lib/cmake/Qt5PrintSupport;/usr/local/Cellar/qt5/5.6.1-1/lib/cmake/Qt5Network"
   - cmake --build .
 
-  #macdeployqt
-  - /usr/local/Cellar/qt5/5.6.1-1/bin/macdeployqt ../bin/Sargam/Release/Sargam.app
+  
+  #- /usr/local/Cellar/qt5/5.6.1-1/bin/macdeployqt ../bin/Sargam/Release/Sargam.app
 
 before_deploy:
-  #- export RELEASE_PKG_FILEA=$(ls ./dist/*bin.zip)
-  # zip sargam.app
+  #macdeployqt
+  - /usr/local/Cellar/qt@5.5/5.5.1_1/bin/macdeployqt ../bin/Sargam/Release/Sargam.app
+  - export RELEASE_PKG_FILEA=$(ls ./dist/*bin.zip)
   - zip -r sargam.macosx10.10.zip ../bin/Sargam/Release/Sargam.app
-  #- export RELEASE_PKG_FILEA="../bin/Sargam/Release/Sargam.app"
-  #- echo "deploying ${RELEASE_PKG_FILEA} to GitHub releases"
+  - echo "deploying ${RELEASE_PKG_FILEA} to GitHub releases"
 
 deploy:
   provider: releases
@@ -61,7 +72,8 @@ deploy:
   skip_cleanup: true
   file_glob: true
   file: 
-    - "sargam.macosx10.10.zip"
+    #- "sargam.macosx10.10.zip"
+    - ${RELEASE_PKG_FILEA}
   on:
     tags: true
 
