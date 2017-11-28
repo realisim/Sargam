@@ -15,9 +15,7 @@ matrix:
 #      xcode_sdk: macosx10.12
 #      compiler: clang
 #      env: 
-#        - QT_BASE=59 
-#        - QT_PREFIX_PATH="/usr/local/Cellar/qt/5.9.2/"
-#        - DEPLOYED_FILENAME="sargam.macosx10.12.zip"
+#        - QT_BASE=59  - QT_PREFIX_PATH="/usr/local/Cellar/qt/5.9.2/" DEPLOYED_FILENAME="sargam.macosx10.12.zip"
 
 git:
   depth: 10
@@ -31,10 +29,10 @@ before_install:
 install:
   # install qt 5.5
   - if [ "$QT_BASE" = "55" ]; then
-      travis_wait brew install qt55
+      travis_wait brew install qt55;
     fi
   - if [ "$QT_BASE" = "59" ]; then
-      travis_wait brew install qt5
+      travis_wait brew install qt5;
     fi
 
 script:
