@@ -3,19 +3,19 @@ language: cpp
 
 matrix:
   include:
-    - os: osx
-      osx_image: xcode6.4
-      xcode_sdk: macosx10.10
-      compiler: clang
-      env: 
-        - QT_BASE=55 QT_PREFIX_PATH="/usr/local/Cellar/qt@5.5/5.5.1_1/" DEPLOYED_FILENAME="sargam.macosx10.10.zip"
-        
 #    - os: osx
-#      osx_image: xcode8.3 # targetting sdk 10.12
-#      xcode_sdk: macosx10.12
+#      osx_image: xcode6.4
+#      xcode_sdk: macosx10.10
 #      compiler: clang
 #      env: 
-#        - QT_BASE=59  - QT_PREFIX_PATH="/usr/local/Cellar/qt/5.9.2/" DEPLOYED_FILENAME="sargam.macosx10.12.zip"
+#        - QT_BASE=55 QT_PREFIX_PATH="/usr/local/Cellar/qt@5.5/5.5.1_1/" DEPLOYED_FILENAME="sargam.macosx10.10.zip"
+        
+    - os: osx
+      osx_image: xcode8.3 # targetting sdk 10.12
+      xcode_sdk: macosx10.12
+      compiler: clang
+      env: 
+        - QT_BASE=59 QT_PREFIX_PATH="/usr/local/Cellar/qt/5.9.2/" DEPLOYED_FILENAME="sargam.macosx10.12.zip"
 
 git:
   depth: 10
