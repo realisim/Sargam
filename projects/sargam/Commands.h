@@ -18,7 +18,7 @@ public:
   PartitionViewerCommand(PartitionViewer*);
   virtual ~PartitionViewerCommand(){}
   
-  virtual void execute(){;}
+  virtual void execute() override{;}
   virtual void undo() override;
   
 protected:

@@ -27,6 +27,13 @@ before_install:
 
 
 install:
+  # The 2 following lines are to install a specific version of
+  # qt using a brew formula directly from a git commit in brew
+  #
+  # Qt 5.6.1-1
+  #- travis_wait curl -O https://raw.githubusercontent.com/Homebrew/homebrew-core/fdfc724dd532345f5c6cdf47dc43e99654e6a5fd/Formula/qt5.rb
+  #- travis_wait brew install ./qt5.rb
+
   # install qt 5.5
   - if [ "$QT_BASE" = "55" ]; then
       travis_wait brew install qt55;
