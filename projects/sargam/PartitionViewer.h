@@ -10,7 +10,7 @@
 #include <QSettings>
 #include "utils/Command.h"
 #include "utils/CommandStack.h"
-#include "utils/Log.h"
+#include "utils/log.h"
 #include <vector>
 
 namespace realisim
@@ -311,7 +311,7 @@ QRect getPageRegion( pageRegion, int ) const; //getRegion
   void moveStrokeBackward( int, int );
   void moveStrokeForward( int, int );
   QString noteToString( Note ) const;
-  virtual void paintEvent(QPaintEvent*);
+  virtual void paintEvent(QPaintEvent*) override;
   void resetComposition(Composition*);
   void resizeLineEditToContent(QLineEdit*);
   void resizeSpinBoxToContent(QSpinBox*);
@@ -332,7 +332,7 @@ QRect getPageRegion( pageRegion, int ) const; //getRegion
   void startLineTextEdit( int );
   void startTitleEdit();
   QString strokeToString( strokeType ) const;
-  virtual void timerEvent(QTimerEvent*);
+  virtual void timerEvent(QTimerEvent*) override;
   int toPageIndex( QPoint ) const;
   std::vector<NoteLocator> toNoteLocator( const std::vector< std::pair<int, int> > ) const;
   void updateBar( int );

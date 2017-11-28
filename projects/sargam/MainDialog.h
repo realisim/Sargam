@@ -9,7 +9,7 @@
 #include <QPrinter>
 #include <QtWidgets>
 #include <QSettings>
-#include "utils/Log.h"
+#include "utils/log.h"
 #include "Updater.h"
 #include <vector>
 #include <map>
