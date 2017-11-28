@@ -8,9 +8,7 @@ matrix:
       xcode_sdk: macosx10.10
       compiler: clang
       env: 
-        - QT_BASE=55
-        - QT_PREFIX_PATH="/usr/local/Cellar/qt@5.5/5.5.1_1/"
-        - DEPLOYED_FILENAME="sargam.macosx10.10.zip"
+        - QT_BASE=55 QT_PREFIX_PATH="/usr/local/Cellar/qt@5.5/5.5.1_1/" DEPLOYED_FILENAME="sargam.macosx10.10.zip"
         
 #    - os: osx
 #      osx_image: xcode8.3 # targetting sdk 10.12
@@ -42,7 +40,7 @@ install:
 script:
   - mkdir build
   - cd build
-  - cmake ../ -G "Xcode" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES="Release" -DCMAKE_PREFIX_PATH="'$QT_PREFIX_PATH'/lib/cmake/Qt5OpenGL;'$QT_PREFIX_PATH'/lib/cmake/Qt5Widgets;'$QT_PREFIX_PATH'/lib/cmake/Qt5PrintSupport;'$QT_PREFIX_PATH'/lib/cmake/Qt5Network"
+  - cmake ../ -G "Xcode" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES="Release" -DCMAKE_PREFIX_PATH="$QT_PREFIX_PATH/lib/cmake/Qt5OpenGL;$QT_PREFIX_PATH/lib/cmake/Qt5Widgets;$QT_PREFIX_PATH/lib/cmake/Qt5PrintSupport;$QT_PREFIX_PATH/lib/cmake/Qt5Network"
   - cmake --build .
 
   
@@ -50,7 +48,7 @@ script:
 
 before_deploy:
   #macdeployqt
-  - "$QT_PREFIX_PATH"/bin/macdeployqt ../bin/Sargam/Release/Sargam.app
+  - $QT_PREFIX_PATH/bin/macdeployqt ../bin/Sargam/Release/Sargam.app
   - zip -r "$DEPLOYED_FILENAME" ../bin/Sargam/Release/Sargam.app
   - echo "deploying "$DEPLOYED_FILENAME" to GitHub releases"
 
