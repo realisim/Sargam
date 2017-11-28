@@ -42,9 +42,7 @@ install:
 script:
   - mkdir build
   - cd build
-
-  cmake ../ -G "Xcode" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES="Release" -DCMAKE_PREFIX_PATH="$QT_PREFIX_PATH/lib/cmake/Qt5OpenGL;$QT_PREFIX_PATH/lib/cmake/Qt5Widgets;$QT_PREFIX_PATH/lib/cmake/Qt5PrintSupport;$QT_PREFIX_PATH/lib/cmake/Qt5Network"
-
+  - cmake ../ -G "Xcode" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES="Release" -DCMAKE_PREFIX_PATH="'$QT_PREFIX_PATH'/lib/cmake/Qt5OpenGL;'$QT_PREFIX_PATH'/lib/cmake/Qt5Widgets;'$QT_PREFIX_PATH'/lib/cmake/Qt5PrintSupport;'$QT_PREFIX_PATH'/lib/cmake/Qt5Network"
   - cmake --build .
 
   
@@ -52,9 +50,9 @@ script:
 
 before_deploy:
   #macdeployqt
-  - $QT_PREFIX_PATH/bin/macdeployqt ../bin/Sargam/Release/Sargam.app
-  - zip -r $DEPLOYED_FILENAME ../bin/Sargam/Release/Sargam.app
-  - echo "deploying $DEPLOYED_FILENAME to GitHub releases"
+  - '$QT_PREFIX_PATH'/bin/macdeployqt ../bin/Sargam/Release/Sargam.app
+  - zip -r "$DEPLOYED_FILENAME" ../bin/Sargam/Release/Sargam.app
+  - echo "deploying "$DEPLOYED_FILENAME" to GitHub releases"
 
 deploy:
   provider: releases
@@ -62,7 +60,7 @@ deploy:
   skip_cleanup: true
   file_glob: true
   file: 
-    - $DEPLOYED_FILENAME
+    - "$DEPLOYED_FILENAME"
   on:
     tags: true
 
