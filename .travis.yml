@@ -54,7 +54,7 @@ script:
 before_deploy:
   #macdeployqt
   - $QT_PREFIX_PATH/bin/macdeployqt ../bin/Sargam/Release/Sargam.app -dmg
-  - mv ../bin/Sargam/Release/Sargam.app ./"$DEPLOYED_FILENAME"
+  - mv ../bin/Sargam/Release/Sargam.dmg "$DEPLOYED_FILENAME"
   - echo "deploying $DEPLOYED_FILENAME to GitHub releases"
 
 deploy:
