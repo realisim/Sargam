@@ -3,12 +3,12 @@ language: cpp
 
 matrix:
   include:
-#    - os: osx
-#      osx_image: xcode6.4
-#      xcode_sdk: macosx10.10
-#      compiler: clang
-#      env: 
-#        - QT_BASE=55 QT_PREFIX_PATH="/usr/local/Cellar/qt@5.5/5.5.1_1/" DEPLOYED_FILENAME="sargam.macosx10.10.dmg"
+    - os: osx
+      osx_image: xcode6.4
+      xcode_sdk: macosx10.10
+      compiler: clang
+      env: 
+        - QT_BASE=55 QT_PREFIX_PATH="/usr/local/Cellar/qt@5.5/5.5.1_1/" DEPLOYED_FILENAME="sargam.macosx10.10.dmg"
         
     - os: osx
       osx_image: xcode8.3 # targetting sdk 10.12
@@ -47,7 +47,6 @@ script:
   - cd build
   - cmake ../ -G "Xcode" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES="Release" -DCMAKE_PREFIX_PATH="$QT_PREFIX_PATH/lib/cmake/Qt5OpenGL;$QT_PREFIX_PATH/lib/cmake/Qt5Widgets;$QT_PREFIX_PATH/lib/cmake/Qt5PrintSupport;$QT_PREFIX_PATH/lib/cmake/Qt5Network"
   - cmake --build .
-
   
   #- /usr/local/Cellar/qt5/5.6.1-1/bin/macdeployqt ../bin/Sargam/Release/Sargam.app
 
