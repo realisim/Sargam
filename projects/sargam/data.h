@@ -17,7 +17,7 @@ namespace sargam
     enum ornementType{ otMeend, otKrintan, otAndolan, otGamak };
     enum noteModification{ nmKomal, nmShuddh, nmTivra };
     enum strokeType{ stDa, stRa, stDiri, stNone };
-    enum script{ sLatin = 0, sDevanagari, sNumberOfScript };
+    enum script{ sLatin = 0, sDevanagari, sBengali, sNumberOfScript };
     
     //------------------------------------------------------------------------------
     struct Version

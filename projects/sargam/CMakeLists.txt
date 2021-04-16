@@ -4,6 +4,11 @@ PROJECT( Sargam )
 #output apps in bin/"BuildConfiguration"/${PROJECT_NAME}
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin/${PROJECT_NAME})
 
+if(MSVC)
+    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+    add_definitions(/MP)
+endif()
+
 #------------------------------------------------------------------------------
 # ICON functions
 #------------------------------------------------------------------------------
@@ -19,7 +24,7 @@ MACRO(ADD_MAC_ICON PATH FILE)
 ENDMACRO(ADD_MAC_ICON)
 
 MACRO(ADD_WIN_ICON RC_FILE)
-  SET( SOURCES ${SOURCES} ${RC_FILE} )
+  SET( SOURCE_FILES ${SOURCE_FILES} ${RC_FILE} )
 ENDMACRO(ADD_WIN_ICON)
 #------------------------------------------------------------------------------
 
@@ -35,22 +40,8 @@ ADD_COMPONENT( "." "Application" )
 ADD_COMPONENT( "./utils" "utils" )
 
 # add cmakelist to sources
-SET( SOURCES ${SOURCES}
+SET( SOURCE_FILES ${SOURCE_FILES}
   "./CMakeLists.txt" )
-
-#sources from utils
-#INCLUDE_DIRECTORIES(../../reusables)
-#FILE( GLOB utils
-#  ../../reusables/utils/Command.*
-#  ../../reusables/utils/CommandStack.*
-#  ../../reusables/utils/Log.*
-#  ../../reusables/utils/utilities.*
-#)
-#SOURCE_GROUP ("utils" FILES ${utils})
-
-#SET( SOURCES ${SOURCES}
-#  ${utils}
-#  "./CMakeLists.txt" )
 
 #------------------------------------------------------------------------------
 # define icons...
@@ -72,10 +63,20 @@ QT_AUTOMOC()
 IF(APPLE)
     ADD_EXECUTABLE( ${PROJECT_NAME} MACOSX_BUNDLE ${INCLUDE_FILES} ${SOURCE_FILES} ${MAC_ICONS})
 ELSE(APPLE)
-    ADD_EXECUTABLE( ${PROJECT_NAME} ${INCLUDES} ${SOURCES} )
+    ADD_EXECUTABLE( ${PROJECT_NAME} WIN32 ${INCLUDE_FILES} ${SOURCE_FILES} )
 ENDIF(APPLE)
     
 target_link_libraries( ${PROJECT_NAME} 
     Qt5::Widgets
     Qt5::PrintSupport
     Qt5::Network)
+
+# install directives
+QT5_INSTALL(${CMAKE_SOURCE_DIR}/bin/${PROJECT_NAME})
+
+# install ThirdParties
+set(QtOpenSslDlls 
+  ${CMAKE_SOURCE_DIR}/ThirdParties/OpenSsl/libcrypto-1_1-x64.dll
+  ${CMAKE_SOURCE_DIR}/ThirdParties/OpenSsl/libssl-1_1-x64.dll)
+INSTALL(FILES ${QtOpenSslDlls} CONFIGURATIONS Debug DESTINATION ${CMAKE_SOURCE_DIR}/bin/${PROJECT_NAME}/Debug)
+INSTALL(FILES ${QtOpenSslDlls} CONFIGURATIONS Release DESTINATION ${CMAKE_SOURCE_DIR}/bin/${PROJECT_NAME}/Release)

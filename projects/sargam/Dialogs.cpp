@@ -249,6 +249,7 @@ QWidget* PreferencesDialog::makeGeneralTab(QWidget *ipParent)
                     mpScriptCombo = new QComboBox(pTab);
                     mpScriptCombo->insertItem(sLatin, "Latin");
                     mpScriptCombo->insertItem(sDevanagari, "देवनागरी");
+                    mpScriptCombo->insertItem(sBengali, "বাংলা");
                     
                     pScriptLyt->addWidget(pName);
                     pScriptLyt->addWidget(mpScriptCombo);

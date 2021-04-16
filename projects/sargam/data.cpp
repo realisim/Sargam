@@ -734,11 +734,11 @@ void Composition::fromBinary( QByteArray iBa )
             ds >> numStrokes;
             for( int j = 0; j < numStrokes; ++j )
             {
-                qint32 st, noteIndex, numNotes;
+                qint32 st, noteIndex, numNotes2;
                 vector<int> vn;
                 ds >> st;
-                ds >> numNotes;
-                for( int k = 0; k < numNotes; ++k )
+                ds >> numNotes2;
+                for( int k = 0; k < numNotes2; ++k )
                 {
                     ds >> noteIndex;
                     vn.push_back(noteIndex);
@@ -801,9 +801,9 @@ void Composition::fromBinary( QByteArray iBa )
             //--- tarab tuning devient la barre 1
             {
                 addDescriptionBar("Tarab tuning");
-                qint32 numNotes;
-                ds >> numNotes;
-                for( int i = 0; i < numNotes; ++i )
+                qint32 numNotes2;
+                ds >> numNotes2;
+                for( int i = 0; i < numNotes2; ++i )
                 {
                     qint32 v, m, o;
                     ds >> v; ds >> o; ds >> m;
@@ -963,46 +963,46 @@ NoteLocator Composition::getNoteLocatorFromOrnement( int iO, int i ) const
 { return mOrnements[iO].mNotes[i]; }
 //------------------------------------------------------------------------------
 int Composition::getNumberOfBars() const
-{ return mBars.size(); }
+{ return (int)mBars.size(); }
 //------------------------------------------------------------------------------
 int Composition::getNumberOfDescriptionBars() const
-{ return mDescriptionBarLabels.size(); }
+{ return (int)mDescriptionBarLabels.size(); }
 //------------------------------------------------------------------------------
 int Composition::getNumberOfLines() const
-{ return mLines.size(); }
+{ return (int)mLines.size(); }
 //------------------------------------------------------------------------------
 int Composition::getNumberOfGraceNotesInBar( int iBar ) const
-{ return getBar(iBar).mGraceNotes.size(); }
+{ return (int)getBar(iBar).mGraceNotes.size(); }
 //------------------------------------------------------------------------------
 int Composition::getNumberOfMatraInBar( int iBar ) const
-{ return getBar(iBar).mMatras.size(); }
+{ return (int)getBar(iBar).mMatras.size(); }
 //------------------------------------------------------------------------------
 int Composition::getNumberOfNotesInBar( int iBar ) const
-{ return getBar(iBar).mNotes.size(); }
+{ return (int)getBar(iBar).mNotes.size(); }
 //------------------------------------------------------------------------------
 int Composition::getNumberOfNotesInMatra( int iBar, int iMatra ) const
-{ return getBar( iBar ).mMatras[iMatra].size(); }
+{ return (int)getBar( iBar ).mMatras[iMatra].size(); }
 //------------------------------------------------------------------------------
 int Composition::getNumberOfNotesInOrnement( int iOrn ) const
-{ return mOrnements[iOrn].mNotes.size(); }
+{ return (int)mOrnements[iOrn].mNotes.size(); }
 //------------------------------------------------------------------------------
 int Composition::getNumberOfNotesInParenthesis( int iRep ) const
-{ return mParenthesis[iRep].mNotes.size(); }
+{ return (int)mParenthesis[iRep].mNotes.size(); }
 //------------------------------------------------------------------------------
 int Composition::getNumberOfNotesInStroke( int iBar, int iStroke ) const
-{ return getBar(iBar).mStrokes[iStroke].mSpan.size(); }
+{ return (int)getBar(iBar).mStrokes[iStroke].mSpan.size(); }
 //------------------------------------------------------------------------------
 int Composition::getNumberOfOrnements() const
-{ return mOrnements.size(); }
+{ return (int)mOrnements.size(); }
 //------------------------------------------------------------------------------
 int Composition::getNumberOfParenthesis() const
-{ return mParenthesis.size(); }
+{ return (int)mParenthesis.size(); }
 //------------------------------------------------------------------------------
 int Composition::getNumberOfRepetitionsForParenthesis( int iRep ) const
 { return mParenthesis[iRep].mNumber; }
 //------------------------------------------------------------------------------
 int Composition::getNumberOfStrokesInBar( int iBar ) const
-{ return getBar(iBar).mStrokes.size(); }
+{ return (int)getBar(iBar).mStrokes.size(); }
 //------------------------------------------------------------------------------
 Composition::Options Composition::getOptions() const
 { return mOptions; }

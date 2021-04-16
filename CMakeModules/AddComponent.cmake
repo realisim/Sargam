@@ -17,6 +17,8 @@ file( GLOB iPATH_SOURCE_FILES
 file( GLOB iPATH_INCLUDE_FILES
   ${iPath}/*.h )
 
+#message(${iPATH_SOURCE_FILES})
+
 # Replace / by \\ present in iDasplayedName so we can create a folder hierachy in the solution.
 # For example: 
 #   ${iDisplayedName} = 'Simulator/Palettes'
@@ -27,5 +29,7 @@ source_group ("${source_group_msvc}" FILES ${iPATH_INCLUDE_FILES} ${iPATH_SOURCE
 # add sources and include to global variable
 set( SOURCE_FILES ${SOURCE_FILES} ${iPATH_SOURCE_FILES} )
 set( INCLUDE_FILES ${INCLUDE_FILES} ${iPATH_INCLUDE_FILES} )
+
+#message(${SOURCE_FILES})
 
 endmacro(add_component)

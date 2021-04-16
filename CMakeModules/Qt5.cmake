@@ -40,10 +40,6 @@ MACRO(QT5_INSTALL iInstallPath)
         #MESSAGE("Qt5Widgets_LIBRARIES in use: " ${Qt5Widgets_LIBRARIES} )
         #MESSAGE("Qt5OpenGL_LIBRARIES in use: " ${Qt5OpenGL_LIBRARIES} )
 
-        SET(ICU_FILES ${Qt5_BIN_DIR}/icudt54.dll
-            ${Qt5_BIN_DIR}/icuin54.dll
-            ${Qt5_BIN_DIR}/icuuc54.dll )
-
         #--- dll related to Qt5Widgets
         SET(QT5WIDGETS_FILES_DEBUG "")
         SET(QT5WIDGETS_FILES_RELEASE "")
@@ -53,11 +49,17 @@ MACRO(QT5_INSTALL iInstallPath)
                 ${Qt5_BIN_DIR}/Qt5Guid.dll
                 ${Qt5_BIN_DIR}/Qt5Guid.pdb
                 ${Qt5_BIN_DIR}/Qt5Widgetsd.dll
-                ${Qt5_BIN_DIR}/Qt5Widgetsd.pdb )
+                ${Qt5_BIN_DIR}/Qt5Widgetsd.pdb
+                ${Qt5_BIN_DIR}/Qt5PrintSupportd.dll
+                ${Qt5_BIN_DIR}/Qt5PrintSupportd.pdb
+                ${Qt5_BIN_DIR}/Qt5Networkd.dll
+                ${Qt5_BIN_DIR}/Qt5Networkd.pdb )
 
             SET(QT5WIDGETS_FILES_RELEASE ${Qt5_BIN_DIR}/Qt5Core.dll
                 ${Qt5_BIN_DIR}/Qt5Gui.dll
-                ${Qt5_BIN_DIR}/Qt5Widgets.dll )
+                ${Qt5_BIN_DIR}/Qt5Widgets.dll 
+                ${Qt5_BIN_DIR}/Qt5PrintSupport.dll
+                ${Qt5_BIN_DIR}/Qt5Network.dll )
         ENDIF()
 
         #--- dll related to Qt5OpenGL
@@ -72,12 +74,10 @@ MACRO(QT5_INSTALL iInstallPath)
 
         # --- and now install...
         # --- in DEBUG
-        INSTALL(FILES ${ICU_FILES} CONFIGURATIONS Debug DESTINATION ${iInstallPath}/Debug)
         INSTALL(FILES ${QT5WIDGETS_FILES_DEBUG} CONFIGURATIONS Debug DESTINATION ${iInstallPath}/Debug)
         INSTALL(FILES ${QT5OPENGL_FILES_DEBUG} CONFIGURATIONS Debug DESTINATION ${iInstallPath}/Debug)
 
         # ----- RELEASE
-        INSTALL(FILES ${ICU_FILES} CONFIGURATIONS Release DESTINATION ${iInstallPath}/Release)
         INSTALL(FILES ${QT5WIDGETS_FILES_RELEASE} CONFIGURATIONS Release DESTINATION ${iInstallPath}/Release)
         INSTALL(FILES ${QT5OPENGL_FILES_RELEASE} CONFIGURATIONS Release DESTINATION ${iInstallPath}/Release)
 

@@ -495,7 +495,7 @@ void PartitionViewer::doCommandAddBar()
     moveParenthesisForward( cb, moveFromIndex );
     
     //efface le note de la barre courrante
-    for( int i = vn.size() - 1; i >= 0; --i )
+    for( int i = (int)vn.size() - 1; i >= 0; --i )
     { x->eraseNote( vn[i].getBar(), vn[i].getIndex() ); }
     
     setBarAsDirty( cb, true );
@@ -648,6 +648,7 @@ void PartitionViewer::doCommandAddOrnement( ornementType iOt )
 //-----------------------------------------------------------------------------
 void PartitionViewer::doCommandAddParenthesis( int iNumber )
 {
+    (void)iNumber;
     /*Cette commande ne peut pas etre executée sur les barres speciales*/
     if( getCurrentBar() < x->getNumberOfDescriptionBars() ){ return; }
     
@@ -798,7 +799,7 @@ void PartitionViewer::doCommandErase()
         /*On efface les notes en partant de la fin parce que la selection contient
          les indices des notes, ainsi en commençant par la fin, nous n'avons pas à
          ajuster les indices.*/
-        for( int i = mSelectedNotes.size() - 1; i >= 0; --i )
+        for( size_t i = mSelectedNotes.size() - 1; i >= 0; --i )
         {
             int bar = mSelectedNotes[i].first;
             int index = mSelectedNotes[i].second;
@@ -1097,7 +1098,7 @@ void PartitionViewer::drawBar( QPainter* iP, int iBar ) const
         }
         
         //les decoration d'octave tivra et de komal
-        for(size_t j = 0; j < x->getNumberOfNotesInBar(iBar); ++j )
+        for(int j = 0; j < x->getNumberOfNotesInBar(iBar); ++j )
         {
             Note n = x->getNote(iBar, j);
             
@@ -1114,9 +1115,9 @@ void PartitionViewer::drawBar( QPainter* iP, int iBar ) const
                 float xStart = noteRect.left() + e / 2.0;
                 float xEnd = noteRect.right() - e / 2.0;
                 iP->save();
-                QPen pen = iP->pen();
-                pen.setWidth( 1 );
-                iP->setPen(pen);
+                QPen pen2 = iP->pen();
+                pen2.setWidth( 1 );
+                iP->setPen(pen2);
                 iP->drawLine(QPointF(xStart, y), QPointF(xEnd, y));
                 iP->restore();
             }
@@ -1129,13 +1130,13 @@ void PartitionViewer::drawBar( QPainter* iP, int iBar ) const
                 if(x->isGraceNote(iBar, j))
                 { br = n.getOctave() == 1 ? brGraceNoteUpperOctaveY : brGraceNoteLowerOctaveY; }
                 int y = getBarRegion(br, b.mBarType);
-                float x = b.getNoteRect(j).left() + b.getNoteRect(j).width() / 2.0;
+                float xPos = b.getNoteRect(j).left() + b.getNoteRect(j).width() / 2.0;
                 iP->save();
-                QPen pen = iP->pen();
-                pen.setWidth( 3 );
-                pen.setCapStyle(Qt::RoundCap);
-                iP->setPen(pen);
-                iP->drawPoint( QPointF(x,y) );
+                QPen pen2 = iP->pen();
+                pen2.setWidth( 3 );
+                pen2.setCapStyle(Qt::RoundCap);
+                iP->setPen(pen2);
+                iP->drawPoint( QPointF(xPos,y) );
                 iP->restore();
             }
         }
@@ -1606,10 +1607,10 @@ QLineF PartitionViewer::getCursorLine() const
     }
     else
     {
-        int x = b.mScreenLayout.left() + getBarRegion( brNoteStartX );
-        int y = b.mScreenLayout.top() + getBarRegion( brNoteTopY, b.mBarType );
+        int xPos = b.mScreenLayout.left() + getBarRegion( brNoteStartX );
+        int yPos = b.mScreenLayout.top() + getBarRegion( brNoteTopY, b.mBarType );
         int h = getBarRegion( brNoteBottomY ) - getBarRegion( brNoteTopY );
-        l.setPoints( QPoint(x,y) , QPoint( x, y + h ) );
+        l.setPoints( QPoint(xPos,yPos) , QPoint( xPos, yPos + h ) );
     }
     return l;
 }
@@ -1721,7 +1722,7 @@ NoteLocator PartitionViewer::getNoteLocatorAtPosition(QPoint iP) const
         if(onWord)
         {
             double shortestDistance = numeric_limits<double>::max();
-            for(size_t j = 0; j < b.mNoteScreenLayouts.size(); ++j )
+            for(int j = 0; j < (int)b.mNoteScreenLayouts.size(); ++j )
             {
                 QRectF r = b.mNoteScreenLayouts[j];
                 QPointF p(iP.x(), iP.y());
@@ -1750,7 +1751,7 @@ int PartitionViewer::getNumberOfPages() const
 { return mNumberOfPages; }
 //-----------------------------------------------------------------------------
 int PartitionViewer::getNumberOfSelectedNote() const
-{ return mSelectedNotes.size(); }
+{ return (int)mSelectedNotes.size(); }
 //-----------------------------------------------------------------------------
 QRect PartitionViewer::getPageRegion( pageRegion iR, int iPage /*=0*/ ) const
 {
@@ -2113,10 +2114,11 @@ void PartitionViewer::keyPressEvent( QKeyEvent* ipE )
 //-----------------------------------------------------------------------------
 void PartitionViewer::keyReleaseEvent( QKeyEvent* ipE )
 {
-    switch (ipE->key())
+    (void)ipE;
+    /*switch (ipE->key())
     {
         default: break;
-    }
+    }*/
 }
 //-----------------------------------------------------------------------------
 void PartitionViewer::mouseMoveEvent( QMouseEvent* ipE )
@@ -2152,8 +2154,7 @@ void PartitionViewer::mouseMoveEvent( QMouseEvent* ipE )
     }
     
     //intersection avec le text de la barre courante
-    const Bar& b = getBar( getCurrentBar() );
-    if( b.mTextScreenLayout.contains( pos ) )
+    if(getBar(getCurrentBar()).mTextScreenLayout.contains( pos ) )
     {
         if( x->hasBarText( getCurrentBar() ) )
         { cs = Qt::IBeamCursor; }
@@ -2600,6 +2601,28 @@ QString PartitionViewer::noteToString( Note iNote ) const
                 default: break;
             }
         }break;
+        case sBengali:
+        {
+            switch (note)
+            {
+                case nvSa: r = ("স"); /*Bengali Letter Sa*/ break;
+                case nvRe: if (nm == nmKomal) { r = ("ঋ"); } /*Bengali Letter Ra*/
+                         else { r = ("র"); } break;  /*Bengali Letter Vocalic R*/
+                case nvGa: if (nm == nmKomal) { r = "জ্ঞ"; }
+                         else { r = "গ"; } break;
+                case nvMa: if (nm == nmTivra) { r = "ক্ষ"; }
+                         else { r = "ম"; } break;
+                case nvPa: r = "প"; break;
+                case nvDha: if (nm == nmKomal) { r = "দ"; }
+                          else { r = "ধ"; } break;
+                case nvNi: if (nm == nmKomal) { r = "ণ"; }
+                         else { r = "ন"; } break;
+                case nvChik: r = "\xE2\x9c\x93"; break; //check
+                case nvRest: r = "\xE2\x80\x94"; break; //barre horizontale
+                case nvComma: r = ","; break;
+                default: break;
+            }
+        }break;
     }
     
     return r;
@@ -2955,6 +2978,7 @@ void PartitionViewer::setScript( script iS )
 //apparait a l'écran la première fois.
 void PartitionViewer::showEvent(QShowEvent* ipSe)
 {
+    (void)ipSe;
     updateLayout();
     updateUi();
 }

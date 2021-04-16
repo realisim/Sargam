@@ -50,7 +50,7 @@ QString Log::getLogPath() const
 { return mFile.fileName(); }
 //-----------------------------------------------------------------------------
 int Log::getNumberOfEntries() const
-{ return mEntries.size(); }
+{ return (int)mEntries.size(); }
 //-----------------------------------------------------------------------------
 QString Log::getEntry(int i) const
 { return mEntries[i]; }

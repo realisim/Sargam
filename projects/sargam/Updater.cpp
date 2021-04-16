@@ -25,10 +25,12 @@ Updater::~Updater()
 void Updater::checkForUpdate()
 {
   QNetworkRequest r;
-  r.setSslConfiguration(QSslConfiguration::defaultConfiguration());
+  QSslConfiguration config = QSslConfiguration::defaultConfiguration();
+  config.setProtocol(QSsl::AnyProtocol);
+  r.setSslConfiguration(config);
   
-  r.setUrl(QUrl("https://raw.githubusercontent.com/realisim/realisim/master/projects/sargam/releaseNotes/sargamReleaseNotes.txt"));
-  //r.setUrl(QUrl("https://raw.githubusercontent.com/realisim/realisim/master/projects/sargam/releaseNotes/sargamReleaseNotes-preprod.txt"));
+  r.setUrl(QUrl("https://raw.githubusercontent.com/realisim/Sargam/master/projects/sargam/releaseNotes/sargamReleaseNotes.txt"));
+  //r.setUrl(QUrl("https://raw.githubusercontent.com/realisim/Sargam/master/projects/sargam/releaseNotes/sargamReleaseNotes-preprod.txt"));
   
   mpUpdateAccess->get(r);
 }
@@ -58,7 +60,7 @@ QString Updater::getDownloadPage() const
 { return mDownloadPage; }
 //---------------------------------------------------------------------
 int Updater::getNumberOfVersions() const
-{ return mVersions.size(); }
+{ return (int)mVersions.size(); }
 //---------------------------------------------------------------------
 QString Updater::getReleaseNotes(int i) const
 { return mVersions[i].mReleaseNotes; }
@@ -89,7 +91,7 @@ void Updater::handleVersionUpdates(QNetworkReply* ipReply)
   QNetworkReply::NetworkError e = ipReply->error();
   if( e == QNetworkReply::NoError )
   {
-    QString content( ipReply->readAll() );
+    QString content = ipReply->readAll();
     
     QStringList d = fetchTagContent("downloadPage", content);
     if(d.size()){ mDownloadPage = d[0]; }
