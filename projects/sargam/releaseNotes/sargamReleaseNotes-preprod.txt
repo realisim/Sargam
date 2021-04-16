@@ -10,6 +10,12 @@
 <h2>Release notes</h2>
 <p>
 This minor version brings Bengali support.<br>
+
+    - added proper OpenSSL libs for updater.<br>
+    - fixed some compilation warnings.<br>
+    - added support for Bengali.<br>
+    - removed command line when application starts.<br>
+    
 Visit the web site to download.<br>
 <br>
 Cheers!
