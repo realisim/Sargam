@@ -16,6 +16,9 @@ This minor version brings Bengali support.<br>
     - added support for Bengali.<br>
     - removed command line when application starts.<br>
     
+    dlsfkg;sldfkjg;lsdfkjg;sdlfkg
+    
+    
 Visit the web site to download.<br>
 <br>
 Cheers!
