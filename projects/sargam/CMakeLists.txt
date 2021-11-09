@@ -43,6 +43,11 @@ ADD_COMPONENT( "./utils" "utils" )
 SET( SOURCE_FILES ${SOURCE_FILES}
   "./CMakeLists.txt" )
 
+# add release notes to sources
+SET( SOURCE_FILES ${SOURCE_FILES}
+  "./releaseNotes/sargamReleaseNotes.txt"
+  "./releaseNotes/sargamReleaseNotes-preprod.txt")
+
 #------------------------------------------------------------------------------
 # define icons...
 #------------------------------------------------------------------------------

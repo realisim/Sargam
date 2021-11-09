@@ -3,6 +3,34 @@
 //-----------------------------------------------------------------------------
 
 <release>
+<version>0.12.1</version>
+<releaseNotes>
+
+<h1>Sargam v0.12.1</h1>
+<h2>Release notes</h2>
+<p>
+This minor version fixes a few bugs.<br>
+
+    - In devanagari scripts: स becomes सा<br>
+    - In devanagari scripts: नी becomes नि - Thank you Deepak ;)<br>
+    - Fixed a crash when selecting multiple notes and replacing them with a single note.<br>
+    
+Visit the web site to download.<br>
+<br>
+Cheers!
+</p>
+
+<p> 
+Thank you very much for using Sargam, please share with your friends!<br>
+Please report bugs and ideas at sargam.software@gmail.com
+</p>
+
+</releaseNotes>
+</release>
+
+//-----------------------------------------------------------------------------
+
+<release>
 <version>0.12.0</version>
 <releaseNotes>
 

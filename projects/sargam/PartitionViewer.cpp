@@ -799,7 +799,7 @@ void PartitionViewer::doCommandErase()
         /*On efface les notes en partant de la fin parce que la selection contient
          les indices des notes, ainsi en commençant par la fin, nous n'avons pas à
          ajuster les indices.*/
-        for( size_t i = mSelectedNotes.size() - 1; i >= 0; --i )
+        for( int i = (int)mSelectedNotes.size() - 1; i >= 0; --i )
         {
             int bar = mSelectedNotes[i].first;
             int index = mSelectedNotes[i].second;
@@ -2586,7 +2586,7 @@ QString PartitionViewer::noteToString( Note iNote ) const
         {
             switch( note )
             {
-                case nvSa: r = ("\xE0\xA4\xB8"); /*स*/ break;
+                case nvSa: r = ("सा"); break;
                 case nvRe:
                     r = QString::fromUtf8("\xE0\xA4\xB0") + QString::fromUtf8("\xE0\xA5\x93");
                     break;
@@ -2594,7 +2594,7 @@ QString PartitionViewer::noteToString( Note iNote ) const
                 case nvMa: r = (nm == nmTivra) ?  QString::fromUtf8("\xE0\xA4\xAE") + QString::fromUtf8("\xE0\xA5\x91") : "\xE0\xA4\xAE"; break; //Ma + Stress Sign Udatta
                 case nvPa: r = ("\xE0\xA4\xAA"); break;
                 case nvDha: r =("\xE0\xA4\xA7"); break;
-                case nvNi: r = QString::fromUtf8("\xE0\xA4\xA8") + QString::fromUtf8("\xE0\xA5\x80"); break; //na + vowel sign Ii
+                case nvNi: r = QString::fromUtf8("नि"); break;
                 case nvChik: r = ("\xE2\x9c\x93"); break; //check
                 case nvRest: r = ("\xE2\x80\x94"); break; //barre horizontale
                 case nvComma: r = ","; break;
